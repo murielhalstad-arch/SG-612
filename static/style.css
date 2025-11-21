@@ -1,0 +1,126 @@
+/* --- Basestil --- */
+* { box-sizing: border-box; }
+:root {
+  --bg: #0f1115;
+  --card: #151822;
+  --text: #e8eaf0;
+  --muted: #a9b0c3;
+  --accent: #6aa7ff;
+  --danger: #ff6b6b;
+  --ok: #2ecc71;
+  --border: #2a2f3d;
+}
+html, body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font: 15px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+  color: var(--text);
+  background: radial-gradient(1200px 800px at 20% -10%, #1a1f2b 0%, #0f1115 60%);
+  background-attachment: fixed;
+}
+
+/* --- Layout --- */
+.container {
+  max-width: 820px;
+  margin: 48px auto;
+  padding: 24px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+}
+
+h1 {
+  margin: 0 0 12px;
+  font-size: 24px;
+  letter-spacing: 0.2px;
+}
+.subtitle {
+  margin: 0 0 20px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+/* --- Skjema (legg til) --- */
+.form {
+  display: flex;
+  gap: 10px;
+  margin: 14px 0 22px;
+}
+.form input[type="text"] {
+  flex: 1;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  color: var(--text);
+  background: #0f131b;
+  outline: none;
+}
+.form input[type="text"]::placeholder { color: #7c849a; }
+
+.button, button {
+  padding: 12px 14px;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  background: var(--accent);
+  color: #0a0f1a;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform .06s ease, filter .2s ease;
+}
+.button:hover, button:hover { filter: brightness(1.05); }
+.button:active, button:active { transform: translateY(1px); }
+
+/* --- Liste --- */
+ul.tasks {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 10px;
+}
+.tasks li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--card);
+}
+
+/* Badger for prioritet (valgfritt) */
+.badge {
+  min-width: 36px;
+  text-align: center;
+  padding: 4px 8px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 12px;
+  border: 1px solid var(--border);
+  background: #0f131b;
+  color: var(--text);
+}
+.p1 { background: #16351f; color: #a6f0b9; } /* lav */
+.p2 { background: #172f3f; color: #a7d4ff; }
+.p3 { background: #2a2640; color: #c7b6ff; }
+.p4 { background: #3b2a3d; color: #ffb6e6; }
+.p5 { background: #3d1f1f; color: #ffb6b6; } /* høy */
+
+/* Tom-liste-tekst */
+.empty {
+  color: var(--muted);
+  font-style: italic;
+  padding: 8px 2px 0;
+}
+
+/* Clear-knapp under lista */
+.clear {
+  margin-top: 14px;
+  background: #212733;
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+.clear:hover { filter: brightness(1.15); }

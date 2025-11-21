@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="no">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Oppgaver</title>
+
+  <!-- Last CSS fra /static/style.css -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+  <style>
+    /* Litt grunnstil i tilfelle style.css er tom */
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; }
+    .wrap { max-width: 900px; margin: 3rem auto; }
+    header { display: flex; align-items: baseline; gap: .75rem; }
+    h1 { font-size: 1.9rem; margin: 0; }
+    .muted { color: #666; font-size: .95rem; }
+    form.add { display: flex; gap: .5rem; margin: 1rem 0; }
+    input[type="text"] { flex: 1; padding: .6rem .7rem; border: 1px solid #ddd; border-radius: .6rem; background: #0f0f14; color: #eaeef6; }
+    button { padding: .6rem .8rem; border: 1px solid #ccc; background: #1677ff; color: white; border-radius: .6rem; cursor: pointer; }
+    button.ghost { background: #fff; color: #111; }
+    ul.tasks { list-style: none; padding: 0; margin: 1rem 0; display: flex; flex-direction: column; gap: .6rem; }
+    .task { display: flex; align-items: center; gap: .6rem; padding: .8rem 1rem; background: #0f0f14; border: 1px solid rgba(255,255,255,.08); border-radius: .8rem; color: #eaeef6; }
+    .pill { font-size: .8rem; padding: .15rem .45rem; border-radius: 1rem; border: 1px solid #8ab4ff; color: #8ab4ff; }
+    .label { font-weight: 600; opacity: .9; }
+    .title { opacity: .85; }
+    .empty { opacity: .65; background: #0f0f14; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>Oppgaver</h1>
+      <span class="muted">Phase 1 – heuristikk</span>
+      <form action="/clear" method="post" style="margin-left:auto;">
+        <button type="submit" class="ghost">Tøm listen</button>
+      </form>
+    </header>
+
+    <form class="add" action="/" method="post">
+      <input
+        type="text"
+        name="title"
+        placeholder="Skriv en oppgave (f.eks. 'Send rapport til kunde i dag')"
+        autofocus
+        onkeydown="if(event.key==='Enter'){ this.form.submit(); }"
+      >
+      <button type="submit">Legg til</button>
+    </form>
+
+    <ul class="tasks">
+      {% if tasks and tasks|length %}
+        {% for t in tasks %}
+          <li class="task">
+            <span class="pill">P{{ t.priority }}</span>
+            <span class="label">{{ t.label }}</span>
+            <span class="title">— {{ t.title }}</span>
+          </li>
+        {% endfor %}
+      {% else %}
+        <li class="task empty"><em>Ingen oppgaver enda.</em></li>
+      {% endif %}
+    </ul>
+  </div>
+</body>
+</html>
